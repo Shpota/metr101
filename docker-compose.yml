@@ -1,0 +1,22 @@
+services:
+  metr101-app:
+    build: .
+    container_name: metr101-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - metr101-prometheus
+
+  metr101-prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: metr101-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  metr101-grafana:
+    image: grafana/grafana:11.2.2
+    container_name: metr101-grafana
+    ports:
+      - "3030:3000"

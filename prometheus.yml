@@ -1,0 +1,7 @@
+scrape_configs:
+  - job_name: metr101-service
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["metr101-app:3000"]
